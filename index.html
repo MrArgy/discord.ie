@@ -1,8 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=https://mrargy.github.io/site/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP check</title>
+    <script>
+        const allowedIPs = ["123.456.789.101", "98.76.54.32"];
+        const redirectURL = "https://mrargy.github.io/site/";
+
+        async function checkIP() {
+            try {
+                let response = await fetch("https://api64.ipify.org?format=json");
+                let data = await response.json();
+                let userIP = data.ip;
+
+                console.log("IP:", userIP);
+
+                if (!allowedIPs.includes(userIP)) {
+                    window.location.href = redirectURL;
+                }
+            } catch (error) {
+                console.error("IP error:", error);
+            }
+        }
+
+        checkIP();
+    </script>
+
+    <!-- <meta http-equiv="refresh" content="0; url=https://mrargy.github.io/site/" /> -->
   </head>
   <body>
   </body>
 </html>
+
